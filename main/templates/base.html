@@ -41,7 +41,8 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">TODO</a>
+            <a class="navbar-brand" href="{% url 'home' %}"><span
+                    style="color:purple; font-weight:700; font-size:26px; font-family:candara;">TODO</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -49,11 +50,20 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 {% if user.is_authenticated %}
                 <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                    <small><a class="nav-item nav-link" href="{% url 'password' %}">Change Password</a></small>
+                </div>
+                <div class="navbar-nav">
+                    <small><a class="nav-item nav-link" href="{% url 'modify' %}">Edit Profile</a></small>
+                </div>
+                <div class="navbar-nav">
+                    <small><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></small>
                 </div>
                 {% else %}
+                <div class="navbar-nav ml-auto">
+                    <small><a class="nav-item nav-link" href="{% url 'login' %}">Login</a></small>
+                </div>
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                    <small><a class="nav-item nav-link" href="{% url 'register' %}">Register</a></small>
                 </div>
                 {% endif %}
             </div>

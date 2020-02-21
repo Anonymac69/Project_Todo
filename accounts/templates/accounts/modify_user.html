@@ -8,9 +8,9 @@
         <div class="card">
             <div class="card-body">
 
-                <h2 class="text-center">Register</h2><br>
+                <h2 class="text-center">Edit Profile</h2><br>
 
-                <form method="POST" action="{% url 'register' %}">
+                <form method="POST" action="{% url 'modify' %}">
                     {% csrf_token %}
                     {% if form.errors %}
                     <div class="alert alert-warning alert-dismissable" role="alert">
@@ -26,8 +26,9 @@
                     {% endif %}
 
                     {{ form.as_p }}
-
-                    <input type="submit" value="Register" class="btn btn-secondary">
+                    <input type="submit" value="Submit Changes" class="btn btn-secondary"><br><br>
+                    <small class="text-muted">Click <a href="{% url 'password' %}">Here</a> To Change
+                        Password</small>
                 </form>
 
             </div>

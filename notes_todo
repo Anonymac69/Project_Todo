@@ -1,11 +1,30 @@
 Bootstrap 
-    - Forms 
     - Alerts 
-    -
+    - Card
+    - Forms 
 
 
 
 Django 
+    - Authentication
     - Forms
     - Messages
+
+
+Form Process 
+    - Request.method  (request.method == 'POST' or 'GET')
+    - Validation      (if form.is_valid)
+    - Authenticate    (user = authenticate(username=username, password=password))
+    - Messages        (messages.success(request, 'Successful...'))
     - 
+
+
+Project Memo 
+    - Gitignore
+    - Database
+    - Authentication 
+    - Views, Templates, URLs 
+    - Models
+
+
+
