@@ -3,10 +3,16 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib import messages
 from .forms import SignUpForm, EditProfileForm
+from .models import *
+from .forms import *
 
 
 def home(request):
-    return render(request, 'main/home.html')
+    tasks = Todo.objects.all()
+
+    form = TaskForm()
+    context = {'tasks': tasks, 'form': form}
+    return render(request, 'accounts/home.html', context)
 
 
 def register_user(request):

@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'above',
     'accounts',
     'crispy_forms',
 ]
@@ -59,7 +58,7 @@ ROOT_URLCONF = 'main.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['main/templates', 'accounts/templates'],
+        'DIRS': ['accounts/templates', 'main/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
