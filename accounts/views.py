@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
-from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from .forms import SignUpForm, EditProfileForm
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import *
 from .forms import *
 
@@ -11,6 +11,12 @@ def home(request):
     tasks = Todo.objects.all()
 
     form = TaskForm()
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid:
+            form.save()
+        return redirect('/')
+
     context = {'tasks': tasks, 'form': form}
     return render(request, 'accounts/home.html', context)
 

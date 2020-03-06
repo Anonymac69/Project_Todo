@@ -1,29 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-
-{% block content %}
-
-<form action="">
-    {{ form }}
-    <input type="submit" name="Create Task">
+<form action="/" method="POST">
+  {% csrf_token %} {{ form.title }}
+  <input type="submit" name="Create Task" />
 </form>
 
-
-
-
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col"><br>
-            <h2>Add Item</h2>
-            <input type="text" class="form-control mb-2 mr-sm-2" placeholder="type here...">
-        </div>
-    </div>
-    {% for task in tasks %}
-
-    <p>{{ task }}</p>
-
-    {% endfor %}
+  {% for task in tasks %}
+  <p>{{ task }}</p>
+  {% endfor %}
 </div>
-
 
 {% endblock %}
