@@ -3,22 +3,23 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from .forms import SignUpForm, EditProfileForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import *
-from .forms import *
+from django.utils import timezone
+from .models import Todo
+from .forms import TaskForm
 
 
 def home(request):
-    tasks = Todo.objects.all()
+    return render(request, 'accounts/home.html', {})
 
-    form = TaskForm()
-    if request.method == 'POST':
-        form = TaskForm(request.POST)
-        if form.is_valid:
-            form.save()
-        return redirect('/')
 
-    context = {'tasks': tasks, 'form': form}
-    return render(request, 'accounts/home.html', context)
+def add_todo(request):
+    current_date = timezone.now()
+    content = request.POST['content']
+    created_obj = Todo.objects.create(added_date=current_date, text=content)
+    print(created_obj)
+    print(created_obj.id)
+
+    return render(request, 'accounts/home.html')
 
 
 def register_user(request):

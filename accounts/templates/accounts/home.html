@@ -1,14 +1,28 @@
 {% extends 'base.html' %} {% block content %}
 
-<form action="/" method="POST">
-  {% csrf_token %} {{ form.title }}
-  <input type="submit" name="Create Task" />
-</form>
-
-<div class="container">
-  {% for task in tasks %}
-  <p>{{ task }}</p>
-  {% endfor %}
+<div class="row justify-content-center">
+  <div class="col-6">
+    <br />
+    <h2>Add Item</h2>
+    <form action="add_todo/" method="POST" class="form-inline">
+      {% csrf_token %}
+      <input
+        name="content"
+        type="text"
+        class="form-control mb2 mr-sm-2"
+        placeholder="Enter Text..."
+      />
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+<br />
+<div class="row justify-content-center">
+  <div class="col-6">
+    <ul class="list-group">
+      <li class="list-group-item">Empty</li>
+    </ul>
+  </div>
 </div>
 
 {% endblock %}

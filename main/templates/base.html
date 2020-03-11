@@ -2,15 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v3.8.6">
     <title>Todo App</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/album/">
-
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -42,7 +34,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}"><span
-                    style="color:purple; font-weight:700; font-size:26px; font-family:candara;">TODO</span></a>
+                    style="font-weight:700; font-size:26px; font-family:candara;">TODO</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -50,10 +42,10 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 {% if user.is_authenticated %}
                 <div class="navbar-nav ml-auto">
-                    <small><a class="nav-item nav-link" href="{% url 'password' %}">Change Password</a></small>
+                    <small><a class="nav-item nav-link" href="{% url 'modify' %}">Edit Profile</a></small>
                 </div>
                 <div class="navbar-nav">
-                    <small><a class="nav-item nav-link" href="{% url 'modify' %}">Edit Profile</a></small>
+                    <small><a class="nav-item nav-link" href="{% url 'password' %}">Change Password</a></small>
                 </div>
                 <div class="navbar-nav">
                     <small><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></small>
