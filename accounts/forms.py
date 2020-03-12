@@ -2,7 +2,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django import forms
 from django.forms import ModelForm
-from .models import Todo
+from .models import List
 
 
 class SignUpForm(UserCreationForm):
@@ -60,7 +60,7 @@ class EditProfileForm(UserChangeForm):
         self.fields['username'].label = ''
 
 
-class TaskForm(forms.ModelForm):
+class ListForm(forms.ModelForm):
     class Meta:
-        model = Todo
-        fields = '__all__'
+        model = List
+        fields = ['item', 'completed']

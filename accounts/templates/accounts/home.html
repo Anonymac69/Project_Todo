@@ -1,28 +1,44 @@
 {% extends 'base.html' %} {% block content %}
 
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-warning alert-dismissable" role="alert">
+  <button class="close" data-dismiss="alert">
+    <small><sup>x</sup></small>
+  </button>
+  {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+
+
 <div class="row justify-content-center">
   <div class="col-6">
     <br />
     <h2>Add Item</h2>
-    <form action="add_todo/" method="POST" class="form-inline">
+    <form action="" method="POST" class="form-inline">
       {% csrf_token %}
-      <input
-        name="content"
-        type="text"
-        class="form-control mb2 mr-sm-2"
-        placeholder="Enter Text..."
-      />
+      <input name="item" type="text" class="form-control mb2 mr-sm-2" placeholder="Add Item..." />
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
 </div>
 <br />
+
 <div class="row justify-content-center">
   <div class="col-6">
+    {% if all_items %}
     <ul class="list-group">
-      <li class="list-group-item">Empty</li>
+      {% for i in all_items %}
+      <li class="list-group-item">{{ i.item }} <small style="text-decoration:none;"><a
+            style="color:red; font-weight: 700;" href="{% url 'delete' i.id %}">x</a></small>
+      </li>
+      {% endfor %}
     </ul>
+    {% endif %}
   </div>
 </div>
+
 
 {% endblock %}

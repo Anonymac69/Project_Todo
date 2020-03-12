@@ -4,22 +4,29 @@ from .forms import SignUpForm, EditProfileForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.utils import timezone
-from .models import Todo
-from .forms import TaskForm
+from .models import List
+from .forms import ListForm
 
 
 def home(request):
-    return render(request, 'accounts/home.html', {})
+    if request.method == 'POST':
+        form = ListForm(request.POST or None)
+
+        if form.is_valid():
+            form.save()
+            all_items = List.objects.all
+            messages.success(request, ('Item Has Been Added To List...'))
+            return render(request, 'accounts/home.html', {'all_items': all_items})
+    else:
+        all_items = List.objects.all
+        return render(request, 'accounts/home.html', {'all_items': all_items})
 
 
-def add_todo(request):
-    current_date = timezone.now()
-    content = request.POST['content']
-    created_obj = Todo.objects.create(added_date=current_date, text=content)
-    print(created_obj)
-    print(created_obj.id)
-
-    return render(request, 'accounts/home.html')
+def delete(request, list_id):
+    item = List.objects.get(pk=list_id)
+    item.delete()
+    messages.success(request, ('Item Has Been Deleted!.'))
+    return redirect('home')
 
 
 def register_user(request):
@@ -39,20 +46,6 @@ def register_user(request):
     return render(request, 'accounts/register.html', context)
 
 
-def edit_user(request):
-    if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user)
-        if form.is_valid():
-            messages.success(
-                request, 'You Have Successfully Modified Your Profile...')
-            return redirect('login')
-    else:
-        form = EditProfileForm(instance=request.user)
-
-    context = {'form': form}
-    return render(request, 'accounts/modify_user.html', context)
-
-
 def login_user(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -70,10 +63,18 @@ def login_user(request):
         return render(request, 'accounts/login.html', {})
 
 
-def logout_user(request):
-    logout(request)
-    messages.success(request, 'See you some other time...')
-    return redirect('home')
+def edit_user(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            messages.success(
+                request, 'You Have Successfully Modified Your Profile...')
+            return redirect('login')
+    else:
+        form = EditProfileForm(instance=request.user)
+
+    context = {'form': form}
+    return render(request, 'accounts/modify_user.html', context)
 
 
 def password(request):
@@ -90,3 +91,9 @@ def password(request):
 
     context = {'form': form}
     return render(request, 'accounts/password.html', context)
+
+
+def logout_user(request):
+    logout(request)
+    messages.success(request, 'See you some other time...')
+    return redirect('home')
