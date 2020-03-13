@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 
+
 {% if messages %}
 {% for message in messages %}
 <div class="alert alert-warning alert-dismissable" role="alert">
@@ -31,8 +32,8 @@
     {% if all_items %}
     <ul class="list-group">
       {% for i in all_items %}
-      <li class="list-group-item">{{ i.item }} <small style="text-decoration:none;"><a
-            style="color:red; font-weight: 700;" href="{% url 'delete' i.id %}">x</a></small>
+      <li class="list-group-item">{{ i.item }}<small class="delete"><a style="color:red; font-weight: 700;"
+            href="{% url 'delete' i.id %}">x</a></small>
       </li>
       {% endfor %}
     </ul>
