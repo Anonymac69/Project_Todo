@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'crispy_forms',
+    'todo'
 ]
 
 CRISPY_TEMPLATES_PACK = 'bootstrap4'
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'main.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['accounts/templates', 'main/templates'],
+        'DIRS': ['accounts/templates', 'main/templates', 'todo/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
