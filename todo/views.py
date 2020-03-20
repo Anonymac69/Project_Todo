@@ -11,7 +11,7 @@ def user_profile(request):
     if request.method == 'GET':
         profile = Profile.objects.filter(author_id=uid)
         context = {'profile': profile}
-        return render(request, 'todo/profile.html', context)
+        return render(request, 'todo/todo.html', context)
 
     if request.method == 'POST':
         create_post = Profile()
