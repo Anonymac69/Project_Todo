@@ -42,6 +42,9 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 {% if user.is_authenticated %}
                 <div class="navbar-nav ml-auto">
+                    <small><a class="nav-item nav-link" href="{% url 'profile' %}">My Todo</a></small>
+                </div>
+                <div class="navbar-nav">
                     <small><a class="nav-item nav-link" href="{% url 'modify' %}">Edit Profile</a></small>
                 </div>
                 <div class="navbar-nav">

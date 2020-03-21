@@ -53,7 +53,8 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, f'Hi {username}, You\'re Welcome...')
+            messages.success(
+                request, f'Hi {username}, You\'re Welcome, Click on "my todo" on the Dashboard to create & see your Todo List')
             return redirect('home')
         else:
             messages.success(
@@ -95,5 +96,6 @@ def password(request):
 
 def logout_user(request):
     logout(request)
-    messages.success(request, 'See you some other time...')
+    messages.success(
+        request, 'You\'re now logged out, See you some other time...')
     return redirect('home')
